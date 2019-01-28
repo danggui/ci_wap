@@ -1,6 +1,5 @@
 import {fetch} from 'config/index'
 
-export const isMaterial= (id)=> fetch('/claim/claimMaterial',{
-    'type':'get',
-    params:id
-  });
+export const isMaterial= (id)=>{
+  return fetch(`/claim/claimMaterial/${id}`,{'type':'get'});
+}

@@ -1,6 +1,8 @@
 import {fetch} from 'config/index'
 
-export const getFamily= (data)=> fetch('/personSecurity /familySecurity',{
+export const getFamily= (id,type)=>fetch(`/personSecurity/familSecurityDetail/${id}/${type}`,
+{
     'type':'get',
-    params:data
-  });
+ });
+
+ 
