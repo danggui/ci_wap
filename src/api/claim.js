@@ -1,7 +1,7 @@
 
 import {fetch} from 'config/index'
 
-export const getClaims= (id,type)=>fetch(`/claim/myClaim/${id}/${type}`,
+export const getClaims= (id,type)=>fetch(`/claim/myAllClaims/${id}/${type}`,
 {
     'type':'get',
  });

@@ -1,13 +1,13 @@
 <template>
   <ul class="tab-container">
-     <li v-for="(item,index) in content" :key="index"  :class="{'active':item.status}" @click="selectStatus(index)">{{item.value}}</li>
+     <li v-for="(item,index) in content" :key="index"  :class="{'active':status[index]}" @click="selectStatus(index)">{{item}}</li>
  </ul>
 </template>
 
 <script>
   export default {
     name:"Tab",
-    props: ["content"],
+    props: ["content","status"],
     data(){
       return{
           
@@ -16,10 +16,6 @@
     methods: {
      selectStatus(index){
        this.$emit("choose",index);
-         this.content.map(element => {
-             element.status=0
-         });
-         this.content[index].status=1
      }
     },
     

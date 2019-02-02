@@ -1,10 +1,10 @@
 <template>
   <div class="upload-container">
      <div class="main-page">
-     <FlexLabel :content="info" :hasImage="true"/>
+     <FlexLabel :content="info" :hasImage="true" :isBank="isBank"/>
       <div class="title-label main-color">上传附件</div>
-      <ImageCard :direction="true"/>
-      <ImageCard :direction="false"/>
+      <ImageCard :direction="flag1"  :isBank="isBank" :defaultImage="front" />
+      <ImageCard :direction="flag2" :isBank="isBank" :defaultImage="reverse" />
       </div>
       <Bottom/>
   </div>
@@ -23,7 +23,8 @@ export default {
     },
   data(){
     return{
-      info:{}
+      flag1:1,
+      flag2:2
     }
   },
   mounted(){
@@ -31,7 +32,10 @@ export default {
   },
   computed:{
     ...mapState({
-    
+      info:state=>state.upload.info,
+      isBank:state=>state.upload.isBank,
+      front:state=>state.upload.frontImage,
+      reverse:state=>state.upload.reverseImage
   })
   },
   methods:{

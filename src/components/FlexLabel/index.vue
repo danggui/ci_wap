@@ -14,30 +14,30 @@
         {{content.bankAccount}} 
         </div>
         </div>
-      <div  v-if="!isBank" class="detail" :class="{'main-color':content.replenishIDImages}" >
-          <template v-if="content.replenishIDImages">已上传</template>
+      <div  v-if="!isBank" class="detail" :class="{'main-color':!content.replenishIDImages}" >
+          <template v-if="!content.replenishIDImages">已上传</template>
           <template v-else>未上传</template>
-        <svg-icon  class-name="rotate" icon-class="left"  v-on:click.native="back"/>
+        <svg-icon  class-name="rotate" icon-class="left"  />
       </div>
-       <div  v-else class="detail" :class="{'main-color':content.replenishBankImages}" >
-        <template v-if="content.replenishBankImages">已上传</template>
+       <div  v-else class="detail" :class="{'main-color':!content.replenishBankImages}" >
+        <template v-if="!content.replenishBankImages">已上传</template>
           <template v-else>未上传</template>
-        <svg-icon  class-name="rotate" icon-class="left"  v-on:click.native="back"/>
+        <svg-icon  class-name="rotate" icon-class="left" />
       </div>
   </div>
   <div  v-else class="flex-label-container">
       <div >
         <div class="title">
-       123
+         {{content.name}}
         </div>
          <div v-if="!isBank" class="sub-title" >
-        1231 2323
+         {{content.idName}} {{content.idNumber}}
         </div>
          <div v-if="isBank" class="sub-title">
-        12321
+        {{content.bankName}} 
         </div>
          <div v-if="isBank" class="sub-title">
-       12321321321
+       {{content.bankAccount}} 
         </div>
         </div>
       
@@ -48,7 +48,7 @@
 <script>
  import {mapActions} from 'vuex'
   export default {
-    name:"Label",
+    name:"FlexLabel",
     props: {
         content:{
             type:Object,
@@ -72,11 +72,11 @@
     },
     methods: {
      showUpload(){
-       let type=0;
+       let type=1;
        if(this.isBank){
-         type=1
+         type=2
        }
-         this.getUpload({id:this.content.personId,type:3})
+         this.getUpload({id:this.content.personId,type:type,isBank:this.isBank})
          this.$router.push(`/upload`)
      },
       ...mapActions([

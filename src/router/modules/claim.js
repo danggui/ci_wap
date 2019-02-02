@@ -7,12 +7,15 @@ const claimRouter = {
     components: {
       default:()=> import('@/views/claim/index'), 
       title:Title,
+      
     },
     children:[
       {
-        path: '/claim',
+        name:"claim",
+        path: `/claim/:id`,
         component: ()=> import('@/views/claim/claim'),
         meta:{title:'我的理赔'}
+        
       },
     {
         path: '/myClaim',

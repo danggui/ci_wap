@@ -1,7 +1,7 @@
 <template>
   <div  class="pic-label-container">
        <div class="pic">
-         <img v-if="content.images" :src="content.images"/>
+         <img v-if="content.images" v-lazy="content.images"/>
           <svg-icon v-else class-name="default-avator" :icon-class="avator"  />
        </div>
        <div class="des">

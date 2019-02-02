@@ -6,7 +6,7 @@
       </div>
       <div class="info">
         <div><div class="sub-title">性别</div><div>{{info.sexName}}</div></div>
-        <div><div class="sub-title">出生日期</div><div>{{info.birthDate}}</div></div>
+        <div><div class="sub-title">出生日期</div><div>{{parseTime(info.birthDate)}}</div></div>
         <div><div class="sub-title">{{info.idName}}</div><div>{{info.idNumber}}</div></div>
         <div><div class="sub-title">手机号码</div><div>{{info.mobile}}</div></div>
         <div><div class="sub-title">电子邮箱</div><div>{{info.email}}</div></div>
@@ -14,8 +14,8 @@
         
       </div>
       <div class="date">
-        <div><div class="sub-title">保险起始日</div><div>{{info.insuredDate}}</div></div>
-        <div><div class="sub-title">保险终止日</div><div>{{info.leaveDate}}</div></div>
+        <div><div class="sub-title">保险起始日</div><div>{{parseTime(info.insuredDate)}}</div></div>
+        <div><div class="sub-title">保险终止日</div><div>{{parseTime(info.leaveDate)}}</div></div>
       </div>
       <div class="more" v-for="(item,index) of content" :key="index">
            <div><div class="sub-title">{{item.insuranceKind}}</div><div>保额：{{item.amount}}</div></div>

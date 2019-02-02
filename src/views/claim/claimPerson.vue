@@ -9,7 +9,7 @@
         <div><div class="sub-title">手机号码</div><div>{{info.mobile}}</div></div>
         <div><div class="sub-title">电子邮箱</div><div>{{info.email}}</div></div>
         <div><div class="sub-title">银行卡</div><div><div class="sub-content" >{{info.bankName}}</div><div class="sub-content">{{info.bankAccount}}</div><div class="sub-content">{{info.accountName}}</div></div></div>
-        <div><div class="sub-title">就诊日期</div><div>{{info.insuredDate}}</div></div>
+        <div><div class="sub-title">就诊日期</div><div>{{parseTime(info.insuredDate)}}</div></div>
        
         
       </div>
@@ -73,7 +73,7 @@
               display: flex; 
               .sub-title{
                 color: #999999;
-                width: 100px;
+                width: 130px;
                 margin-right: 45px;
               }
               .sub-content{

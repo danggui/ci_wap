@@ -5,10 +5,10 @@
            <div @click="showClaim">查看全部 <svg-icon class-name="small-size " icon-class="next" /></div>
        </div>
        <div class="content">
-        <div><div class=" logo logo1"></div>理赔中</div>
-        <div><div class=" logo logo2"></div>已结案</div>
-        <div><div class=" logo logo3"></div><span v-if="!isMaterial" class="redpoint"></span>待提交</div>
-        <div><div class=" logo logo4"></div>理赔申请</div>
+        <div @click="getProcessiong"><div class=" logo logo1"></div>理赔中</div>
+        <div @click="getProcessed"><div class=" logo logo2"></div>已结案</div>
+        <div @click="getToProcess"><div class=" logo logo3"></div><span v-if="!isMaterial" class="redpoint"></span>待提交</div>
+        <div @click="apply"><div class=" logo logo4"></div>理赔申请</div>
 
        </div>
      </div>
@@ -25,7 +25,19 @@
     },
     methods: {
      showClaim(){
-         this.$router.push("/claim")
+         this.$router.push("/claim/0")
+     },
+     getProcessiong(){
+        this.$router.push("/claim/1")
+     },
+     getProcessed(){
+           this.$router.push("/claim/2")
+     },
+     getToProcess(){
+         this.$router.push("/claim/3")
+     },
+     apply(){
+        this.$router.push("/apply")
      }
     },
     

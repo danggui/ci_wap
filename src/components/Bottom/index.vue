@@ -23,6 +23,9 @@
    methods: {
      main(){
          this.$router.push('/')
+     },
+     claim(){
+       this.$router.push('/claim/0')
      }
     },
   };

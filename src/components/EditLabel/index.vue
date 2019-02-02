@@ -2,9 +2,9 @@
   <div v-show="isShow" class="edit-label-container"  >
       <div class="content" @click="showClaim(content.id)">
       <div class="title" >
-           <div class="label"> <div class="sub-title">申请日期</div> <div>{{content.createdDate}}</div></div>
-           <div class="label"> <div class="sub-title">就诊人</div> <div>{{content.name}}</div></div>
-           <div class="label"> <div class="sub-title">就诊日期</div> <div>{{content.doctorDate}}</div></div>
+           <div class="label"> <div class="sub-title">申请日期</div> <div>{{parseTime(content.createdDate)}}</div></div>
+           <div class="label"> <div class="sub-title">就诊人</div> <div>{{parseTime(content.name)}}</div></div>
+           <div class="label"> <div class="sub-title">就诊日期</div> <div>{{parseTime(content.doctorDate)}}</div></div>
            <div class="label"> <div class="sub-title">状态</div> <div>{{content.typeName}}</div></div> 
      </div>
       <div class="detail">
@@ -27,7 +27,7 @@
     props: {
         content:{
             type:Object,
-            default:[]
+            default:{}
         },
         isShow:{
             type:Boolean,
@@ -73,7 +73,7 @@
    .sub-title{
       color:#999999;
       text-align: left;
-      width: 120px;
+      width: 130px;
       margin-right: 45px;
    }
    .label{

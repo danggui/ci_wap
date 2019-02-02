@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
 <div>
-<router-link to="/notice">
+<router-link to="/notice" >
  理赔申请须知
 </router-link>
  </div>

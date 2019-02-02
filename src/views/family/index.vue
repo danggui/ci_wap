@@ -1,7 +1,7 @@
 <template>
   <div class="family-container">
     <div class="main-page">
-      <Tab :content="contents" @choose="selectStatus"></Tab>
+      <Tab :content="contents" :status="status"  @choose="selectStatus"></Tab>
       <Default v-if="detail.length<=0"/>
       <Label v-for="(item,index) in detail" :key="index" :content="item.personSecurityInfoResponse" :detail="item.planInsuranceKinds" :isShow="show" :index="index"/>
     </div>
@@ -23,7 +23,7 @@ export default {
   data(){
     return{
        isShow:{value:true},
-       contents:[{value:"生效中",status:1},{value:"待生效",status:0},{value:"已生效",status:0}],
+       contents:["生效中","待生效","已生效"],
        show:true,
       
     }
@@ -33,6 +33,7 @@ export default {
   },
   computed:{
   ...mapState({
+    status:state=>state.family.status,
     detail: state=>state.family.list
   })
   },

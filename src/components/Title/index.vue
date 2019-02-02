@@ -34,7 +34,12 @@
     
    methods: {
       back(){
+        if(this.$route.name=="claim"){
+          this.$router.push("/");
+        }
+        else{
         this.$router.goBack();//返回上一层
+        }
     },
     },
     

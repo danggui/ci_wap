@@ -6,6 +6,7 @@ import member from './modules/member'
 import material from './modules/material'
 import upload from './modules/upload'
 import claim from './modules/claim'
+import apply from './modules/apply'
 //import color from './modules/color'
 import createLogger from 'vuex/dist/logger'
 import createPersistedState from "vuex-persistedstate"
@@ -29,7 +30,8 @@ export default new Vuex.Store({
     member,
     material,
     upload,
-    claim
+    claim,
+    apply
   },
   plugins: [
     createPersistedState({

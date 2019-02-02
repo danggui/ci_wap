@@ -1,13 +1,13 @@
 import axios from 'axios'
 import Cookies from "js-cookie";
 import { getToken , removeToken} from '@/utils/auth'
-import { Indicator } from 'mint-ui';
+import { Indicator,MessageBox } from 'mint-ui';
 import { stringify } from 'qs'  //qs模块
 /**
 * 定义请求常量
 * TIME_OUT、ERR_OK
 */
-export const TIME_OUT = 10000;    // 请求超时时间
+export const TIME_OUT = 5000000000;    // 请求超时时间
 export const ERR_OK = true;      // 请求成功返回状态，字段和后台统一
 export const baseUrl = `${process.env.BASE_URL}/api/ecosaas/ci`;   // 引入全局url，定义在全局变量process.env中，开发环境为了方便转发，值为空字符串
 
@@ -41,6 +41,57 @@ axios.interceptors.response.use(
     }
   },
   error => {
+    if (err && err.response) {
+      switch (err.response.status) {
+        case 400:
+          err.message = '请求错误'
+          break
+
+        case 401:
+          err.message = '未授权，请登录'
+          Message.error({message: '未授权，请。。。'});
+          break
+
+        case 403:
+          err.message = '拒绝访问'
+          break
+
+        case 404:
+          err.message = `请求地址出错: ${err.response.config.url}`
+          break
+
+        case 408:
+          err.message = '请求超时'
+          break
+
+        case 500:
+          err.message = '服务器内部错误'
+          Message.error({message: '服务器被吃了⊙﹏⊙∥'});
+          break
+
+        case 501:
+          err.message = '服务未实现'
+          break
+
+        case 502:
+          err.message = '网关错误'
+          break
+
+        case 503:
+          err.message = '服务不可用'
+          break
+
+        case 504:
+          err.message = '网关超时'
+          break
+
+        case 505:
+          err.message = 'HTTP版本不受支持'
+          break
+
+        default:
+      }
+    }
     return Promise.reject(error)
   }
 )

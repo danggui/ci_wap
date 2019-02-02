@@ -56,7 +56,7 @@
      display: flex;
     }
     .title{
-        width: 180px;
+        width: 200px;
         margin-right: 45px;
         color: #999999;
     }

@@ -2,11 +2,6 @@
   <div class="member-container">
     <div class="main-page">
       <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
-      <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
-      <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
-      <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
-      <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
-      <PicLabel v-for="(item) in detail" :key="item.label" :content="item" :isShow="show"/>
        </div>
        <Bottom/>
        </div>

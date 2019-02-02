@@ -8,7 +8,7 @@
            <div v-for="(item,index) in upload" :key="index">
                 <div class="sub-title">病历</div>
                 <div class="photo">
-                <div v-for="(i,key) of item" :key="key"><img  :src="i.filePath"/> </div>
+                <div v-for="(i,key) of item" :key="key"><img  v-lazy="i.thumbPath"/> </div>
                 </div>
         </div>
       </div>
@@ -72,6 +72,7 @@
            }
            .photo{
                display: flex;
+               flex-wrap:wrap;
                flex-direction: row;
                >div{
                    width: 25%;

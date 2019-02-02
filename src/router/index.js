@@ -92,6 +92,14 @@ const routes = [
   },
   meta:{title:'上传附件'},
 },
+{
+  path: '/apply',
+  components: {
+    default:()=> import('@/views/apply/index'),
+    title:Title,
+  },
+  meta:{title:'理赔申请'},
+},
 claimRouter,
 ];
 
