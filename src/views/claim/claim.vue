@@ -2,7 +2,7 @@
   <div class="claim-container ">
       <Tab :content="contents" :status="status" @choose="selectStatus"></Tab>
       <Default v-if="list.length<=0"/>
-      <EditLabel v-for="(item,index) in list" :key="index"  :content="item" :isShow="true" :index="index"/>
+      <EditLabel v-for="(item,index) in list" :key="index"  :content="item" :isShow="true" :index="index" />
       <Button/>
   </div>
 </template>
@@ -50,7 +50,8 @@ export default {
     },
     fetchData(){
        this.$store.dispatch("showMyClaim",{id:3,type:this.type})
-    }
+    },
+   
   }
 }
 </script>

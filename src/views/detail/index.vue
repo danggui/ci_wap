@@ -1,5 +1,6 @@
 <template>
-  <div class="detail-container main-page">
+  <div class="detail-container">
+    <div class="main-page">
       <div class="title">
        <div>被保险人</div>
        <div>{{info.name}}</div>
@@ -21,8 +22,8 @@
            <div><div class="sub-title">{{item.insuranceKind}}</div><div>保额：{{item.amount}}</div></div>
            <div class="sub-des">{{item.guaranteeComment}}</div>
       </div>
+     </div>
      <Bottom/>
-     
   </div>
 </template>
 
@@ -55,15 +56,13 @@ export default {
 </script>
    
 <style rel="stylesheet/scss" lang="scss" scope>
-.detail-container{
+.detail-container {
        background: #ffffff;
-       >div{
+     .main-page {
            border-bottom:1px solid #EBEBEB;
            font-size: 24px;  /*px*/
            padding: 0 32px;
            line-height: 34px;
-           text-align: left;
-         
        }
        .title{
            display: flex;

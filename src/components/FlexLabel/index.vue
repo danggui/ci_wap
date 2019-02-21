@@ -52,7 +52,7 @@
     props: {
         content:{
             type:Object,
-            default:[]
+            default:{}
         },
         isBank:{
           default:false

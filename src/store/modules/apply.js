@@ -1,21 +1,56 @@
 import {showInfo,showEditInfo,uploadImage,updateImage,deleteImage,saveApply,saveEdit} from '@/api/apply' 
+import {vuexStorage} from '../../utils/storage';
 const apply = {
     state: {
         people:[],
         image1:{},
-        image2:{}
+        image2:{},
+        select:"",
+        code:115,
+        update:0,
+        edit_id:undefined
+     
     },
 
     mutations: {
         SET_INFO: (state, data) => {
+            state.select="",
+            state.code=data.code
+            state.update=0
+            vuexStorage.remove("insuredId")
+            vuexStorage.remove("personId")
+            vuexStorage.remove("tenant")
             state.people=[]
             state.image1={},
             state.image2={}
             data.res.forEach(
                 (item,index)=>{
-                    state.people.push({id:item.id,values:item.name})
+                    state.people.push({id:item.id,values:item.name,personId:item.personId,tenant:item.tenantId})
                 }
             )
+          
+        },
+        SET_EDIT_INFO:(state, data) => {
+            state.select=data.res.name
+            const code =data.code
+            state.code=code
+            state.edit_id=data.id
+            state.update=1
+            state.people=[]
+             state.image1={}
+            state.image2={}
+            if(code==115){
+                state.image1=data.img
+            }
+            else{
+                state.image2=data.img
+
+            }
+            vuexStorage.set("code",code)
+            vuexStorage.set("insuredId",data.insuredId)
+            vuexStorage.set("personId",data.res.personId)
+            vuexStorage.set("tenant",data.res.tenantId)
+            
           
         },
         UPDATE_IMAGE: (state, data) => {
@@ -30,19 +65,23 @@ const apply = {
             }
         },
         UPLOAD_IMAGE:(state, data) => {
+            console.log(data)
            if(data.res.accessoryType<=105){
               state.image1[data.code].push({thumbPath:data.res.thumbPath})
            }
            else{
             state.image2[data.code].push({thumbPath:data.res.thumbPath})
            }
+        },
+        SAVE_APPLY:(state, data)=>{
+             
         }
     },
   
     actions: {
-        showApply({ commit }, id) {
-            showInfo(id).then( (response) => {
-               commit('SET_INFO', {res:response.data.familySecurity,status:response.data.replenishData})
+        showApply({ commit }, data) {
+            showInfo(data.id).then( (response) => {
+               commit('SET_INFO', {res:response.data.familySecurity,status:response.data.replenishData,code:data.code})
             }).catch((error) => {
                 console.log(error);
             })
@@ -50,7 +89,7 @@ const apply = {
           //获取修改信息及图片
           showEditApply({ commit }, id) {
             showEditInfo(id).then( (response) => {
-               commit('SET_EDIT_INFO', {res:response.data.personSecurity,img:response.data.claimImages,time:response.data.doctorDate,code:response.data.chargeType,id:response.data.id})
+               commit('SET_EDIT_INFO', {res:response.data.personSecurity,insuredId:response.data.insuredId,img:response.data.claimImages,time:response.data.doctorDate,code:response.data.chargeType,id:response.data.id})
             }).catch((error) => {
                 console.log(error);
             })
@@ -86,8 +125,7 @@ const apply = {
         saveMyApply({commit, dispatch},data){
             saveApply(data.data).then((response) => {
                 commit('SAVE_APPLY', {res:response,status:data.status})
-                dispatch('showMyClaim',getPerson())
-
+                dispatch('showApply',{id:3,code:115})
              }).catch((error) => {
                  console.log(error);
              })
@@ -96,7 +134,7 @@ const apply = {
           saveMyEdit({commit, dispatch},data){
             saveEdit(data.data,data.id).then((response) => {
                 commit('SAVE_EDIT', {res:response.data,code:data.code})
-                dispatch('showMyClaim',getPerson())
+                dispatch('showApply',{id:3,code:115})
              }).catch((error) => {
                  console.log(error);
              })

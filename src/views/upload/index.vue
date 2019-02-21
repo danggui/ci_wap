@@ -3,8 +3,8 @@
      <div class="main-page">
      <FlexLabel :content="info" :hasImage="true" :isBank="isBank"/>
       <div class="title-label main-color">上传附件</div>
-      <ImageCard :direction="flag1"  :isBank="isBank" :defaultImage="front" />
-      <ImageCard :direction="flag2" :isBank="isBank" :defaultImage="reverse" />
+      <ImageCard :direction="flag1"  :isBank="isBank" :defaultImage="front"  :id="frontId"/>
+      <ImageCard :direction="flag2" :isBank="isBank" :defaultImage="reverse"  :id="reverseId"/>
       </div>
       <Bottom/>
   </div>
@@ -35,7 +35,9 @@ export default {
       info:state=>state.upload.info,
       isBank:state=>state.upload.isBank,
       front:state=>state.upload.frontImage,
-      reverse:state=>state.upload.reverseImage
+      reverse:state=>state.upload.reverseImage,
+      frontId:state=>state.upload.frontId,
+      reverseId:state=>state.upload.reverseId,
   })
   },
   methods:{

@@ -1,7 +1,7 @@
 <template>
   <div class="apply-container main-page">
       <div class="apply-label" @click="showSheet">
-      <div ><div class="title">就诊类型：</div> <div class="value">{{value}}
+      <div ><div class="title">就诊类型：</div> <div class="value">{{type}}
     <mt-actionsheet
        cancel-text=""
        closeOnClickModal
@@ -17,6 +17,11 @@
        <div class="title-label main-color">身份证件</div>
        <div class="apply-label" @click="showTime">
       <div><div class="title">就诊日期：</div> <div class="value">{{selectedTime}}
+      </div></div>
+      <div class="detail" >
+           <svg-icon  class-name="rotate" icon-class="left" />
+      </div>
+      </div>
        <mt-datetime-picker
         ref="picker1"
         v-model="pickerValue"
@@ -25,17 +30,11 @@
         @confirm="chooseDate"
         @cancel="close"
         @click="close-pop"
-        :endDate="endDate"
-         >
+        :endDate="endDate" >
         </mt-datetime-picker>
-          </div></div>
-      <div class="detail" >
-           <svg-icon  class-name="rotate" icon-class="left" />
-      </div>
-      </div>
       <div class="apply-label" @click="showPerson">
       <div><div class="title">就诊人：</div> <div class="value">{{selectedPeople}}
-         <mt-popup
+         <mt-popup v-if="!update"
           closeOnClickModal
           v-model="sheetVisible2"
           position="bottom">
@@ -44,7 +43,7 @@
          </mt-picker>
         </mt-popup>
        </div></div>
-      <div class="detail" >
+      <div class="detail"   v-if="!update">
            <svg-icon  class-name="rotate" icon-class="left" />
       </div>
       </div>
@@ -59,16 +58,20 @@
       <template v-else>
        <ImageList v-for="(item,index) in label2" :title="item.value" :key="index" :content="image2[item.label]"  :must="item.must" :type="item.type" :typeName="item.label"/> 
        </template>
+       <save-unit @submitInfo="saveForm"></save-unit>
+       <Bottom/>
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
 import ImageList from '@/components/ImageList';
-
+import SaveUnit from '@/components/SaveUnit';
+import Bottom from '@/components/Bottom';
+import {Toast} from 'mint-ui'
   export default {
     name:"Apply",
-    components:{ImageList},
+    components:{ImageList,SaveUnit,Bottom},
     props: {
       
     },
@@ -80,9 +83,7 @@ import ImageList from '@/components/ImageList';
         sheetVisible: false,
         sheetVisible2: false,
         selectedTime:null,
-        selectedPeople:null,
-        pickerValue:"",
-        value:"门急诊",
+        pickerValue:false,
         endDate:new Date(),
         actions: [{
           name: '门急诊',
@@ -111,11 +112,10 @@ import ImageList from '@/components/ImageList';
       }
     },
     created(){
-        this.$store.dispatch('showApply',3)
+        //this.$store.dispatch('showApply',3)
     },
     mounted(){
-        this.setStorage("code","115")
-        this.removeStorage("insuredId")
+        
     },
     computed:{
       ...mapState({
@@ -123,7 +123,23 @@ import ImageList from '@/components/ImageList';
           people:state=>state.apply.people,
           image1:state=>state.apply.image1,
           image2:state=>state.apply.image2,
+          update:state=>state.apply.update,
+          edit_id:state=>state.apply.edit_id
+         
+          //selectedPeople:state=>state.apply.select,
       }),
+        type(){
+          return this.$store.state.apply.code==116?'住院':'门急诊';
+        },
+        selectedPeople:{
+          get(){
+             return this.$store.state.apply.select
+          },
+          set(value){
+             this.$store.state.apply.select= value
+        }
+
+        },
        slots(){
             return [{ flex: 1,values:this.people}]
         },
@@ -142,6 +158,7 @@ import ImageList from '@/components/ImageList';
                 this.pickerValue = new Date()
             }
             this.$refs['picker1'].open()
+            
     },
     chooseDate(){
          this.selectedTime=this.parseTime(this.pickerValue)
@@ -152,12 +169,14 @@ import ImageList from '@/components/ImageList';
           )
     },
     choosePeople(picker, values){
-        this.selectedPeople = this.$refs.picker2.getValues()[0].values
+     // console.log(this.$refs.picker2.getValues()[0])
+         this.selectedPeople = this.$refs.picker2.getValues()[0].values
          let id=this.$refs.picker2.getValues()[0].id
          this.setStorage("insuredId",id)
          let code = this.getStorage("code")?this.getStorage("code"):115
+         let personId =  this.setStorage("personId",this.$refs.picker2.getValues()[0].personId) 
+         let tenant=this.setStorage("tenant",this.$refs.picker2.getValues()[0].tenant)  
          this.$store.dispatch('getImageList',{id:id,code:code,kind:0},)
-       
     },
     close(){
         this.$nextTick(
@@ -166,26 +185,57 @@ import ImageList from '@/components/ImageList';
              } 
           )
     },
-      outpatient() {
-       this.value="门急诊"
-       this.setStorage("code","115")
+    outpatient() {
+       this.setStorage("code",115)
        this.isOutpatient=true
-       this.selectedPeople=null
        this.selectedTime=null
-       this.removeStorage("insuredId")
-       this.$store.dispatch('showApply',3)
-      },
+       //this.removeStorage("insuredId")
+       this.$store.dispatch('showApply',{id:3,code:115})
+     },
 
-      hospital() {
-        this.value="住院"
-        this.setStorage("code","116")
+     hospital() {
+        this.setStorage("code",116)
         this.isOutpatient=false
-        this.selectedPeople=null
         this.selectedTime=null
-        this.removeStorage("insuredId")
-         this.$store.dispatch('showApply',3)
+        //this.removeStorage("insuredId")
+         this.$store.dispatch('showApply',{id:3,code:116})
       },
-     
+      saveForm(isDraft){
+         
+           let insuredId= this.getStorage("insuredId")
+           let code= this.getStorage("code")
+           let personSecurityId=this.getStorage("personId")
+           let tenant =this.getStorage("tenant")
+           let status = isDraft==0?117:118
+           if(!id){
+             Toast("请选择员工")
+             return
+           }
+           if(!this.selectedTime){
+             Toast("请选择时间")
+             return
+           }
+            const data={
+            'personId':3,
+            "insuredId":insuredId,
+            "chargeType":code,
+            "submitWay":"WAP",
+            "doctorDate":new Date(this.selectedTime),
+            "claimStatus":status,
+            "personSecurityId":personSecurityId,
+            "tenantId":tenant
+        }
+       if(!this.update){
+          this.$store.dispatch("saveMyApply",{data:data,status:status})
+       }else{
+         this.$store.dispatch("saveMyEdit",{data:data,id:this.edit_id})
+       }
+           
+            
+          
+         
+      
+      }
    
     }, 
    

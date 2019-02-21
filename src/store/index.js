@@ -11,6 +11,10 @@ import apply from './modules/apply'
 import createLogger from 'vuex/dist/logger'
 import createPersistedState from "vuex-persistedstate"
 Vue.use(Vuex)
+
+
+
+
 const debug = true
 
 export default new Vuex.Store({
@@ -37,7 +41,6 @@ export default new Vuex.Store({
     createPersistedState({
     storage: window.sessionStorage
   }),
-  
    createLogger()
   
 ],

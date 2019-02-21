@@ -15,13 +15,13 @@
         
       </div>
       <div v-if="content.type==3" class="more">
-         <div class="edit">编辑</div><div class="delete">删除</div>
+         <div class="edit" @click="handleEdit(content.id)">编辑</div><div class="delete"  @click="handleDelete(index,content.id)">删除</div>
       </div>
   </div>
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import {mapState,mapActions} from 'vuex'
   export default {
     name:"EditLabel",
     props: {
@@ -42,6 +42,11 @@
           
       }
     },
+    computed:{
+     ...mapState({
+     list: state=>state.claim.list,
+  })
+    },
     methods: {
       reset(){
         history.go();
@@ -49,6 +54,13 @@
      showClaim(id){
          this.showGeneralClaim(id)
          this.$router.push(`/myClaim`)
+     },
+     handleEdit(id){
+        this.$router.push({path: '/apply'});
+        this.$store.dispatch('showEditApply',id);
+     },
+     handleDelete(index,id){
+          this.$store.dispatch('deleteMyClaim',{index:index,id:id});
      },
       ...mapActions([
         'showGeneralClaim'

@@ -35,7 +35,7 @@
 @import "../../styles/mixin.scss";
 .bottom-container{
   background: #EBEBEB;
-  
+  padding:0;
   font-size: 25px; /*px*/
   text-align: center;
   width: 100%;

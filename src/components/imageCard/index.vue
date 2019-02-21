@@ -2,9 +2,9 @@
   <div class="image-container" >
    <div v-if="direction==1">正面</div>
    <div v-else>反面</div>
-   <div  class="photo-upload"  @click="trigger">
-        <svg-icon v-if="!defaultImage" class-name="image-icon" icon-class="image" />
-        <img  v-else  v-lazy="defaultImage">
+   <div  class="photo-upload"  @click="trigger" >
+        <svg-icon v-if="!defaultImage" class-name="image-icon" icon-class="image"   /> 
+        <template v-else ><img   v-lazy="defaultImage" ><svg-icon @click.native.stop="removeImage"  icon-class="delete" class-name="delete-icon"/></template>
     </div>
         <input type="file"   v-if="direction==1" id="upload1" accept="image/jpg" @change="upload" :style="style">
         <input type="file" v-else id="upload2" accept="image/jpg" @change="upload" :style="style">
@@ -27,7 +27,12 @@
         isBank:{
             type:Boolean,
             default:false
-        }
+        },
+        id:{
+            type:Number,
+            default:0
+        },
+       
     },
     data(){
       return{
@@ -101,6 +106,10 @@
           console.log(this.direction)
           this.$store.dispatch("uploadIdBankImage",{data:formData,direction:this.direction})
      },
+     removeImage(){
+         console.log(this.id)
+           this.$store.dispatch("deleteInfoImage",{id:this.id,direction:this.direction})
+     }
     }, 
   };
 </script>
@@ -110,7 +119,15 @@
    background: #ffffff;
    padding: 32px;
    margin-bottom: 20px;
-   
+   .relative-image{
+       position: relative;
+   }
+   .delete-icon{
+       color: #D80031;
+       position: absolute;
+       right: -20px;
+       top: -20px;
+   }
    .image-icon{
     color: #cccccc;
     width: 50px;
@@ -122,6 +139,7 @@
       height: 154px;
       margin: 25px 0 10px;
       border:2px dashed #cccccc;
+      position: relative;
       img{
         width: 154px;
         height: 154px;

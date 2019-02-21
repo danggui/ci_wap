@@ -11,3 +11,7 @@ export const getClaims= (id,type)=>fetch(`/claim/myAllClaims/${id}/${type}`,
      'type':'get'
  });
 
+ export const deleteClaim =(id) =>fetch(`/claim/claim/${(id)}`,
+ {
+     'type':'delete'
+ })

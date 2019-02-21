@@ -8,15 +8,16 @@ import 'lib-flexible/flexible.js'
 import '@/styles/index.scss'
 
 
-import { DatetimePicker,Popup,Actionsheet,Lazyload ,Picker} from 'mint-ui';
+import { DatetimePicker,Popup,Actionsheet,Lazyload ,Picker,Checklist} from 'mint-ui';
 
 
 Vue.component(Picker.name, Picker);
 Vue.component(DatetimePicker.name, DatetimePicker,);
 Vue.component(Popup.name, Popup);
 Vue.component(Actionsheet.name, Actionsheet);
-
+Vue.component(Checklist.name, Checklist);
 Vue.use(Lazyload);
+
 
 //全局svg
 import './icons' // icon
@@ -24,10 +25,11 @@ import './icons' // icon
 import './directives'
 //全局函数
 import format from './utils/format'
-import storage from './utils/storage'
+import {vStorage} from './utils/storage'
 Vue.use(format);
-Vue.use(storage);
+Vue.use(vStorage);
 
+import  './api/mock'
 
 Vue.config.productionTip = false
 
