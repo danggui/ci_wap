@@ -106,5 +106,6 @@ claimRouter,
 
 
 export default new Router({
+  base:'/ci-wap/',
   routes: routes,
 })
