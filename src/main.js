@@ -47,6 +47,6 @@ new Vue({
   template: '<App/>'
 })
 
-import Vconsole from 'vconsole';
-const vConsole = new Vconsole();
-export default vConsole;
+//mport Vconsole from 'vconsole';
+//const vConsole = new Vconsole();
+//export default vConsole;
