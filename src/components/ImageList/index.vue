@@ -7,7 +7,7 @@
         <div class="photo-upload"  @click="trigger">
         <svg-icon  class-name="image-icon" icon-class="image" />
          </div>
-        <input type="file"  ref="upload" accept="image/jpg" @change="upload" :style="style"/>
+        <input type="file"  ref="upload" accept="image/*" @change="upload" :style="style"/>
        </div>
        
      </div> 
@@ -17,6 +17,7 @@
 <script>
   import {mapState,mapMutations} from 'vuex'
   import {Toast} from 'mint-ui'
+import { endianness } from 'os';
   export default {
     name:"ImageList",
     props: {
@@ -55,27 +56,33 @@
     },
     methods:{
        //上传
-      trigger(){
-                  this.$refs.upload.click();
+       trigger(){
+            this.$refs.upload.click();
         },
         upload (e) {
+         //  console.log(e)
         let files = e.target.files || e.dataTransfer.files;
+        console.log(files)
         if (!files.length) return;
         let picValue = files[0];
+       
+
         this.postImg(picValue)
-     
+        
     },
      postImg(e){
-          const id =this.getStorage("insuredId")
+       
+       const id =this.getStorage("insuredId")
          if(!id){
              Toast("请选择就诊人")
              return;
          }
+        
           const formData = new FormData()
           formData.append('file',e)
           formData.append('insuredId',id)
-        
           formData.append('accessoryType',this.type)
+           
           this.$store.dispatch("uploadSingleImage",{data:formData,code:this.typeName})
      },
      

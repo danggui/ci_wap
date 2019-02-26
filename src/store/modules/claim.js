@@ -29,7 +29,7 @@ const claim = {
             state.general={}
             if(data){
                 state.general=data
-                state.value.push(data.typeName,data.name,data.invoiceNumber,data.claimStatus,data.invoiceAmount)
+                state.value.push(data.chargeTypeName,data.name,data.invoiceNumber,data.claimStatus,data.invoiceAmount)
                 state.person_info=data.personSecurity
                 state.history=data.claimStatusLogs
                 state.upload=data.claimImages

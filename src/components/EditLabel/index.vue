@@ -11,8 +11,8 @@
         <svg-icon  class-name="rotate" icon-class="left"  v-on:click.native="showDetail"/>
       </div>
       </div>
-      <div v-if="content.claimStatus==118" class="des">
-        
+      <div v-if="content.supplementaryNote" class="des">
+        <Detail :content="content.supplementaryNote"/>
       </div>
       <div v-if="content.type==3" class="more">
          <div class="edit" @click="handleEdit(content.id)">编辑</div><div class="delete"  @click="handleDelete(index,content.id)">删除</div>
@@ -21,9 +21,11 @@
 </template>
 
 <script>
+  import Detail from '@/components/Detail'
   import {mapState,mapActions} from 'vuex'
   export default {
     name:"EditLabel",
+    components:{Detail},
     props: {
         content:{
             type:Object,
@@ -101,10 +103,7 @@
         vertical-align: -10px;
        
 }
-.des{
-    color: #DF8804;
-    background: #EBEBEB;
-}
+
 .more{
     padding: 0 32px;
     height: 84px;

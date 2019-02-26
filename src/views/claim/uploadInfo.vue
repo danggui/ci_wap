@@ -6,7 +6,8 @@
       </div>
        <div class="gallary">
            <div v-for="(item,index) in upload" :key="index">
-                <div class="sub-title">病历</div>
+                  
+                <div class="sub-title" v-if="item.length>0">{{getName(index)}}</div>
                 <div class="photo">
                 <div v-for="(i,key) of item" :key="key"><img  v-lazy="i.thumbPath"/> </div>
                 </div>
@@ -19,7 +20,7 @@
 
 <script>
   import {mapState,mapMutations} from 'vuex'
-  
+  import {getLabel} from "@/utils/map"
   export default {
     name:"ClaimProgress",
     props: {
@@ -27,6 +28,7 @@
     },
     data(){
       return{
+       
          
       }
     },
@@ -39,8 +41,9 @@
       })
     },
     methods:{
-     
-     
+      getName(item){
+        return getLabel(item)
+      }
     }, 
   };
 </script>

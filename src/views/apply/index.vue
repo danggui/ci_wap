@@ -174,7 +174,7 @@ import {Toast} from 'mint-ui'
          let id=this.$refs.picker2.getValues()[0].id
          this.setStorage("insuredId",id)
          let code = this.getStorage("code")?this.getStorage("code"):115
-         let personId =  this.setStorage("personId",this.$refs.picker2.getValues()[0].personId) 
+         let personSId =  this.setStorage("personSId",this.$refs.picker2.getValues()[0].personSId) 
          let tenant=this.setStorage("tenant",this.$refs.picker2.getValues()[0].tenant)  
          this.$store.dispatch('getImageList',{id:id,code:code,kind:0},)
     },
@@ -204,13 +204,14 @@ import {Toast} from 'mint-ui'
          
            let insuredId= this.getStorage("insuredId")
            let code= this.getStorage("code")
-           let personSecurityId=this.getStorage("personId")
+           let personSecurityId=this.getStorage("personSId")
            let tenant =this.getStorage("tenant")
            let status = isDraft==0?117:118
-           if(!id){
+           if(!insuredId){
              Toast("请选择员工")
              return
            }
+          
            if(!this.selectedTime){
              Toast("请选择时间")
              return

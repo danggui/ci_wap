@@ -18,14 +18,14 @@ const apply = {
             state.code=data.code
             state.update=0
             vuexStorage.remove("insuredId")
-            vuexStorage.remove("personId")
+            vuexStorage.remove("personSId")
             vuexStorage.remove("tenant")
             state.people=[]
             state.image1={},
             state.image2={}
             data.res.forEach(
                 (item,index)=>{
-                    state.people.push({id:item.id,values:item.name,personId:item.personId,tenant:item.tenantId})
+                    state.people.push({id:item.personId,values:item.name,personSId:item.id,tenant:item.tenantId})
                 }
             )
           
@@ -47,8 +47,8 @@ const apply = {
 
             }
             vuexStorage.set("code",code)
-            vuexStorage.set("insuredId",data.insuredId)
-            vuexStorage.set("personId",data.res.personId)
+            vuexStorage.set("insuredId",data.res.personId)
+            vuexStorage.set("personSId",data.res.id)
             vuexStorage.set("tenant",data.res.tenantId)
             
           
