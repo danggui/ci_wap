@@ -3,7 +3,7 @@
       <div class="content" @click="showClaim(content.id)">
       <div class="title" >
            <div class="label"> <div class="sub-title">申请日期</div> <div>{{parseTime(content.createdDate)}}</div></div>
-           <div class="label"> <div class="sub-title">就诊人</div> <div>{{parseTime(content.name)}}</div></div>
+           <div class="label"> <div class="sub-title">就诊人</div> <div>{{content.name}}</div></div>
            <div class="label"> <div class="sub-title">就诊日期</div> <div>{{parseTime(content.doctorDate)}}</div></div>
            <div class="label"> <div class="sub-title">状态</div> <div>{{content.typeName}}</div></div> 
      </div>
@@ -74,12 +74,12 @@
 <style rel="stylesheet/scss" lang="scss" scope>
 .edit-label-container{
     background: #ffffff;
-    margin: 20px 0;
+    margin:0 0 20px 0;
     line-height: 50px;
     color:#333333;
     font-size: 30px; /*px*/
    .content{
-    padding:  32px;
+       padding:  32px;
        display: flex;
        align-items: center;
        justify-content: space-between;
@@ -115,7 +115,7 @@
     font-size: 24px;/*px*/
     >div{
         margin-left:20px;
-        border: 2px solid #999999; /*no*/
+        border: 1px solid #999999; /*no*/
         border-radius: 50px;
         height: 50px;
         width: 130px;

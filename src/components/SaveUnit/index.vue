@@ -34,7 +34,7 @@
     methods: {
      submitDraft(){
          if(this.value.length==0){
-             Toast("请阅读")
+             Toast("请先勾选已阅读并同意理赔须知内容")
              return
          }
           this.$emit("submitInfo",0)
@@ -42,7 +42,7 @@
      },
       submitForm(){
          if(this.value.length==0){
-             Toast("请阅读")
+             Toast("请先勾选已阅读并同意理赔须知内容")
               return
          }
            this.$emit("submitInfo",1);

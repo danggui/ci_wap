@@ -58,20 +58,22 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scope>
 .detail-container {
        background: #ffffff;
-     .main-page {
+      .main-page {
            border-bottom:1px solid #EBEBEB;
            font-size: 24px;  /*px*/
-           padding: 0 32px;
            line-height: 34px;
        }
        .title{
+           padding: 0 32px;
            display: flex;
            font-size: 32px;  /*px*/
            height: 110px;
            align-items: center;
            justify-content: space-between;
+           border-bottom:1px solid #EBEBEB;
        }
        .info{
+            padding: 0 32px;
             margin-top: 30px;
             border-bottom:1px solid #EBEBEB;
            >div{
@@ -88,6 +90,7 @@ export default {
            }
        }
        .date{
+               padding: 0 32px;
               padding-top: 30px ;
               border-bottom:1px solid #EBEBEB;
            >div{

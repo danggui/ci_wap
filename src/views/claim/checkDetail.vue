@@ -3,7 +3,7 @@
       <div class="loop" v-for="(item,index) of info" :key="index">
      <div class="title">
        <div>发票号</div>
-       <div> {{item.invoiceCode}}</div>
+       <div class="value"> {{item.invoiceCode}}</div>
       </div>
      <div class="check-list" >
         <div class="record" >
@@ -11,7 +11,7 @@
                发票金额
              </div>
               <div class="value">
-             {{item.invoiceValue}}
+             {{item.invoiceValue.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -19,7 +19,7 @@
                第三方支付
              </div>
               <div class="value">
-               {{item.thirdPay}}
+               {{item.thirdPay.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -27,7 +27,7 @@
                理赔金额
              </div>
               <div class="value">
-              {{item.lisuanAmount}}
+              {{item.lisuanAmount.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -35,7 +35,7 @@
                赔付金额
              </div>
               <div class="value">
-              {{item.compensationAmount}}
+              {{item.compensationAmount.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -43,7 +43,7 @@
                统筹支付
              </div>
               <div class="value">
-              {{item.overallPay}}
+              {{item.overallPay.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -51,7 +51,7 @@
               附加支付
              </div>
               <div class="value">
-              {{item.additionalPayment}}
+              {{item.additionalPayment.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -59,7 +59,7 @@
               分类支付
              </div>
               <div class="value">
-              {{item.thirdPay}}
+              {{item.thirdPay.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -67,7 +67,7 @@
                分类自付
              </div>
               <div class="value">
-              {{item.classificationPay}}
+              {{item.classificationPay.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -75,7 +75,7 @@
               自费
              </div>
               <div class="value">
-              {{item.ownExpense}}
+              {{item.ownExpense.toFixed(2)}}
               </div>
                </div>
                <div class="record" >
@@ -83,7 +83,7 @@
               拒赔金额
              </div>
               <div class="value">
-              {{item.rejectedAmount}}
+              {{item.rejectedAmount.toFixed(2)}}
               </div>
                
         </div>
@@ -146,6 +146,9 @@
            justify-content: space-between;
            color: #999999;
             border-bottom:1px solid #EBEBEB;
+             .value{
+             color:#333333;
+           }
        }
        .info{
            padding: 32px 32px;
@@ -159,7 +162,7 @@
                padding: 10px 0;
                color: #333333;
                line-height: 30px;
-               font-size: 26px;/*px*/
+              
            }
        }
        .check-list{

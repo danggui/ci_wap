@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
      <v-header :info="info"></v-header>
-     <v-main :isMaterial="info.replenishClaimMaterial"></v-main>
+     <v-main :isMaterial="info.replenishClaimMaterial" :isUpdate="info.toBeSubmit"></v-main>
      <v-nav></v-nav>
       <keep-alive>
       <router-view ></router-view>
@@ -16,6 +16,7 @@ import main from '@/components/Main';
 import nav from '@/components/Nav';
 import BackTop from '@/components/BackTop';
 import {mapState} from 'vuex'
+
 export default {
   name: 'Login',
   components: {

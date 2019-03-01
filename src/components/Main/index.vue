@@ -7,7 +7,7 @@
        <div class="content">
         <div @click="getProcessiong"><div class=" logo logo1"></div>理赔中</div>
         <div @click="getProcessed"><div class=" logo logo2"></div>已结案</div>
-        <div @click="getToProcess"><div class=" logo logo3"></div><span v-if="!isMaterial" class="redpoint"></span>待提交</div>
+        <div @click="getToProcess"><div class=" logo logo3"></div><span v-if="!isUpdate" class="redpoint"></span>待提交</div>
         <div @click="apply"><div class=" logo logo4"></div>理赔申请</div>
 
        </div>
@@ -17,7 +17,7 @@
 <script>
   export default {
     name:"Main",
-    props: ["isMaterial"],
+    props: ["isMaterial","isUpdate"],
     data(){
       return{
          

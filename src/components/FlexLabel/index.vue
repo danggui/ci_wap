@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!hasImage"  class="flex-label-container" @touchstart="showUpload()">
+  <div v-if="!hasImage"  class="flex-label-container" @click="showUpload()">
       <div >
         <div class="title">
         {{content.name}}

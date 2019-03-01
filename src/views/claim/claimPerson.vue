@@ -2,7 +2,7 @@
   <div class="claim-person-container main-page">
      <div class="title">
        <div>就诊人</div>
-       <div>{{info.name}}</div>
+       <div class="value">{{info.name}}</div>
       </div>
        <div class="info">
         <div><div class="sub-title">证件号码</div><div>{{info.idNumber}}</div></div>
@@ -63,6 +63,9 @@
            align-items: center;
            justify-content: space-between;
            color: #999999;
+           .value{
+             color:#333333;
+           }
        }
       .info{
             padding: 32px;

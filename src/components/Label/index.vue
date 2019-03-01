@@ -22,7 +22,7 @@
         },
         detail:{
           type:Array,
-          default:[]
+          default:()=>[]
         },
         index:{
            default:0

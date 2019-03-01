@@ -14,7 +14,7 @@
            <svg-icon  class-name="rotate" icon-class="left" />
       </div>
       </div>
-       <div class="title-label main-color">身份证件</div>
+       <div class="title-label main-color">就诊信息</div>
        <div class="apply-label" @click="showTime">
       <div><div class="title">就诊日期：</div> <div class="value">{{selectedTime}}
       </div></div>
@@ -52,7 +52,7 @@
       <div class="des-label ">1. 请上传三个月以内的发票及凭证</div>
       <div class="des-label ">2. 图片格式：jpg、jpeg、png，单张大小不超过3MB</div>
      </div>
-     <template v-if="isOutpatient">
+     <template v-if="code==115">
        <ImageList v-for="(item,index) in label1" :title="item.value" :key="index" :content="image1[item.label]"  :must="item.must" :type="item.type" :typeName="item.label"/> 
      </template>
       <template v-else>
@@ -108,7 +108,8 @@ import {Toast} from 'mint-ui'
            {value:'检查报告',index:10,must:0,type:110,label:"inspects"},
            {value:'其他附件',index:11,must:0,type:111,label:"others"}
            ],
-           isOutpatient:true
+
+          
       }
     },
     created(){
@@ -143,6 +144,10 @@ import {Toast} from 'mint-ui'
        slots(){
             return [{ flex: 1,values:this.people}]
         },
+        code(){
+          return this.$store.state.apply.code
+        },
+
     },
     methods: {
     showSheet(){
@@ -173,7 +178,7 @@ import {Toast} from 'mint-ui'
          this.selectedPeople = this.$refs.picker2.getValues()[0].values
          let id=this.$refs.picker2.getValues()[0].id
          this.setStorage("insuredId",id)
-         let code = this.getStorage("code")?this.getStorage("code"):115
+         let code = this.code
          let personSId =  this.setStorage("personSId",this.$refs.picker2.getValues()[0].personSId) 
          let tenant=this.setStorage("tenant",this.$refs.picker2.getValues()[0].tenant)  
          this.$store.dispatch('getImageList',{id:id,code:code,kind:0},)
@@ -186,34 +191,29 @@ import {Toast} from 'mint-ui'
           )
     },
     outpatient() {
-       this.setStorage("code",115)
-       this.isOutpatient=true
+       //this.setStorage("code",115)
        this.selectedTime=null
-       //this.removeStorage("insuredId")
        this.$store.dispatch('showApply',{id:3,code:115})
      },
 
      hospital() {
-        this.setStorage("code",116)
-        this.isOutpatient=false
+       // this.setStorage("code",116)
         this.selectedTime=null
-        //this.removeStorage("insuredId")
-         this.$store.dispatch('showApply',{id:3,code:116})
+        this.$store.dispatch('showApply',{id:3,code:116})
       },
       saveForm(isDraft){
-         
            let insuredId= this.getStorage("insuredId")
-           let code= this.getStorage("code")
+           let code= this.code
            let personSecurityId=this.getStorage("personSId")
            let tenant =this.getStorage("tenant")
            let status = isDraft==0?117:118
            if(!insuredId){
-             Toast("请选择员工")
+             Toast("请选择就诊人")
              return
            }
           
            if(!this.selectedTime){
-             Toast("请选择时间")
+             Toast("请选择就诊日期")
              return
            }
             const data={
@@ -259,7 +259,7 @@ import {Toast} from 'mint-ui'
     }
     .title{
         width: 200px;
-        margin-right: 45px;
+        //margin-right: 10px;
         color: #666666;
     }
     .value{

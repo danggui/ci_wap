@@ -59,7 +59,8 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scope>
 @import "../../styles/mixin.scss";
 .claim-container{
-    min-height: calc(100vh - 98px )
+    min-height: calc(100vh - 98px );
+    padding-bottom:100px;
 }
 
 </style>

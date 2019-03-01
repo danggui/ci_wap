@@ -112,6 +112,7 @@ import { endianness } from 'os';
             flex-direction: row;
              .gallary{
                    width: 25%;
+                   margin-bottom: 5px;
                     img{
                         width: 154px;
                          height: 154px;

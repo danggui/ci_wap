@@ -53,10 +53,8 @@
        >div{
            border-bottom:1px solid #EBEBEB;
            font-size: 24px;  /*px*/
-           padding: 0 32px;
            line-height: 34px;
            text-align: left;
-           background: #ffffff;
        }
        .title{
            display: flex;

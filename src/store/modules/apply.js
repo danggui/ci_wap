@@ -1,5 +1,7 @@
 import {showInfo,showEditInfo,uploadImage,updateImage,deleteImage,saveApply,saveEdit} from '@/api/apply' 
 import {vuexStorage} from '../../utils/storage';
+import router from '../../router';
+
 const apply = {
     state: {
         people:[],
@@ -20,6 +22,7 @@ const apply = {
             vuexStorage.remove("insuredId")
             vuexStorage.remove("personSId")
             vuexStorage.remove("tenant")
+           // vuexStorage.remove("code")
             state.people=[]
             state.image1={},
             state.image2={}
@@ -37,16 +40,15 @@ const apply = {
             state.edit_id=data.id
             state.update=1
             state.people=[]
-             state.image1={}
+            state.image1={}
             state.image2={}
             if(code==115){
                 state.image1=data.img
             }
             else{
                 state.image2=data.img
-
             }
-            vuexStorage.set("code",code)
+           // vuexStorage.set("code",code)
             vuexStorage.set("insuredId",data.res.personId)
             vuexStorage.set("personSId",data.res.id)
             vuexStorage.set("tenant",data.res.tenantId)
@@ -74,7 +76,16 @@ const apply = {
            }
         },
         SAVE_APPLY:(state, data)=>{
-             
+            state.image1={}
+            state.image2={}
+            state.code=115
+            router.push("/claim/0")
+        },
+        SAVE_EDIT:(state, data)=>{
+            state.image1={}
+            state.image2={}
+            state.code=115
+            router.push("/claim/0")
         }
     },
   
@@ -125,7 +136,7 @@ const apply = {
         saveMyApply({commit, dispatch},data){
             saveApply(data.data).then((response) => {
                 commit('SAVE_APPLY', {res:response,status:data.status})
-                dispatch('showApply',{id:3,code:115})
+                //dispatch('showApply',{id:3,code:115})
              }).catch((error) => {
                  console.log(error);
              })
@@ -134,7 +145,7 @@ const apply = {
           saveMyEdit({commit, dispatch},data){
             saveEdit(data.data,data.id).then((response) => {
                 commit('SAVE_EDIT', {res:response.data,code:data.code})
-                dispatch('showApply',{id:3,code:115})
+                //dispatch('showApply',{id:3,code:115})
              }).catch((error) => {
                  console.log(error);
              })

@@ -35,6 +35,7 @@ export default {
 　　watch: {
 　　　'$route' (to, from) {
 　　　　let isBack = this.$router.isBack  //  监听路由变化时的状态为前进还是后退
+          //console.log(this.$router)
 　　　　　　if(isBack) {
 　　　　　　　　this.transitionName = 'slide-right'
 　　　　　　} else {
