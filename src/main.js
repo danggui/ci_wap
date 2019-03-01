@@ -44,7 +44,10 @@ new Vue({
   store,
   i18n,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  mounted(){
+    window.vue = this
+  }
 })
 
 //import Vconsole from 'vconsole';

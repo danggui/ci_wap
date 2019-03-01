@@ -3,7 +3,9 @@
   <div class="image-label">
       <div class="title"><span v-if="must">*</span>{{title}}</div>
         <div class="photo">
-            <div  class="gallary" v-for="(item,index) of content" :key="index"><img v-lazy="item.thumbPath"/> </div>
+            <div  class="gallary" v-for="(item,index) of content" :key="index"><img v-lazy="item.thumbPath"/> 
+            <svg-icon @click.native.stop="removeImage(item.id)"  icon-class="delete" class-name="delete-icon"/>
+            </div>
         <div class="photo-upload"  @click="trigger">
         <svg-icon  class-name="image-icon" icon-class="image" />
          </div>
@@ -85,6 +87,11 @@ import { endianness } from 'os';
            
           this.$store.dispatch("uploadSingleImage",{data:formData,code:this.typeName})
      },
+      removeImage(id){
+          console.log(this.type)
+          console.log(id)
+           this.$store.dispatch("deleteSingleImage",{id:id,type:this.type})
+     }
      
     }, 
   };
@@ -96,6 +103,7 @@ import { endianness } from 'os';
      .image-label{
        background: #ffffff;
         padding: 34px;
+
         .title{
             color:#333333;
             margin-bottom: 20px;
@@ -113,18 +121,28 @@ import { endianness } from 'os';
              .gallary{
                    width: 25%;
                    margin-bottom: 5px;
+                    position: relative;
                     img{
                         width: 154px;
                          height: 154px;
                         }
                }
+               .delete-icon{
+                 width: 30px;
+                 height:30px;
+                 color: #D80031;
+                 position: absolute;
+                 right: 0px;
+                 top: -12px;
+                 z-index:1;
+               }
        }
 }
 .image-icon{
     color: #cccccc;
-    width: 50px;
-    height: 50px;
-    transform:translate(100%, 100%);
+    width: 50px !important;
+    height: 50px !important;
+    transform:translate(100%, 100%) !important;
    }
   .photo-upload{
       width: 154px;

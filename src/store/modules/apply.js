@@ -69,10 +69,10 @@ const apply = {
         UPLOAD_IMAGE:(state, data) => {
             console.log(data)
            if(data.res.accessoryType<=105){
-              state.image1[data.code].push({thumbPath:data.res.thumbPath})
+              state.image1[data.code].push({thumbPath:data.res.thumbPath,id:data.res.id})
            }
            else{
-            state.image2[data.code].push({thumbPath:data.res.thumbPath})
+            state.image2[data.code].push({thumbPath:data.res.thumbPathm,id:data.res.id})
            }
         },
         SAVE_APPLY:(state, data)=>{
@@ -86,7 +86,10 @@ const apply = {
             state.image2={}
             state.code=115
             router.push("/claim/0")
-        }
+        },
+        DELETE_IMAGE:(state, data)=>{
+            
+        },
     },
   
     actions: {

@@ -24,11 +24,9 @@ export default new Vuex.Store({
   mutations:{
     IS_HOME: (state, isTrue) => {
       state.isHome=isTrue
-     },
-     
+     },    
   },
- 
-  modules: {
+  modules:{
     home,
     family,
     member,

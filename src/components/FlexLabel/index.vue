@@ -104,14 +104,15 @@
     overflow: hidden;
     max-width: 500px;
     text-overflow: ellipsis;
-   }
-   .title{
+    .title{
       color: #333333;
       font-size: 34px; /*px*/
       text-align: left;
       height: 48px;
       line-height: 48px;
    }
+   }
+   
    .sub-title{
       color: #999999;
       font-size: 28px; /*px*/

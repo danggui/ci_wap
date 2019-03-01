@@ -33,7 +33,7 @@
       </div>
        <div class="instrus" v-if="!info.replenishClaimMaterial"> 
         <div><svg-icon class-name="size-icon" icon-class="bell" /></div>
-          <div>您的理赔申请缺少材料，请点击【这里】补充材料</div>
+          <div @click="jumpTo">您的理赔申请缺少材料，请点击【这里】补充材料</div>
       </div>
       <div class="instrus-no" v-else> 
       </div>
@@ -78,6 +78,9 @@
       },
       hideDetail() {
         this.detailShow = false;
+      },
+      jumpTo(){
+        this.$router.push("/material")
       }
     },
     created() {
