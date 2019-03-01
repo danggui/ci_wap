@@ -130,9 +130,9 @@
    }
    .image-icon{
     color: #cccccc;
-    width: 50px;
-    height: 50px;
-    transform:translate(100%, 100%);
+    width: 50px !important;
+    height: 50px !important;
+    transform:translate(100%, 100%)!important;
    }
   .photo-upload{
       width: 154px;

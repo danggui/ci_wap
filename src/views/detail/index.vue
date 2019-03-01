@@ -16,7 +16,7 @@
       </div>
       <div class="date">
         <div><div class="sub-title">保险起始日</div><div>{{parseTime(info.insuredDate)}}</div></div>
-        <div><div class="sub-title">保险终止日</div><div>{{parseTime(info.leaveDate)}}</div></div>
+        <div><div class="sub-title">保险终止日</div><div>{{parseTime(info.invalidDate)}}</div></div>
       </div>
       <div class="more" v-for="(item,index) of content" :key="index">
            <div><div class="sub-title">{{item.insuranceKind}}</div><div>保额：{{item.amount}}</div></div>

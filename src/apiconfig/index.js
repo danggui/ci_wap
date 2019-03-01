@@ -19,7 +19,7 @@ axios.defaults.timeout = TIME_OUT
 // 封装请求拦截
 axios.interceptors.request.use(
     config => {
-        Indicator.open('Loading...');
+        Indicator.open('加载中...');
         let token = getToken()  // 获取token
         //config.headers['Content-Type'] = 'application/json;charset=UTF-8'
         config.headers['Authorization'] = token

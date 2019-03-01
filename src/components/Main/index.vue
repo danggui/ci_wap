@@ -56,8 +56,8 @@
             height: 62px;
         }
     .small-size{
-            width:22px;
-            height: 22px;
+            width:22px !important;
+            height: 22px !important;
         }
     .title{
         height: 90px;

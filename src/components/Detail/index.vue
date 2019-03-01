@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-container" @click="hideOrShow" :style="style">
+  <div class="detail-container-c" @click="hideOrShow" :style="style">
       <svg-icon  class-name="warning" icon-class="warning"/> {{content}}
   </div>
 </template>
@@ -48,7 +48,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scope>
-  .detail-container{
+  .detail-container-c{
        color: #DF8804;
        background: #EBEBEB;
        padding: 10px 16px;
