@@ -3,7 +3,7 @@
   <div class="image-label">
       <div class="title"><span v-if="must">*</span>{{title}}</div>
         <div class="photo">
-            <div  class="gallary" v-for="(item,index) of content" :key="index"><img v-lazy="item.thumbPath"/> 
+            <div  class="gallary" v-for="(item,index) of content" :key="index"><img :src="item.thumbPath"/> 
             <svg-icon @click.native.stop="removeImage(item.id)"  icon-class="delete" class-name="delete-icon"/>
             </div>
         <div class="photo-upload"  @click="trigger">
@@ -88,9 +88,7 @@ import { endianness } from 'os';
           this.$store.dispatch("uploadSingleImage",{data:formData,code:this.typeName})
      },
       removeImage(id){
-          console.log(this.type)
-          console.log(id)
-           this.$store.dispatch("deleteSingleImage",{id:id,type:this.type})
+           this.$store.dispatch("deleteSingleImage",id)
      }
      
     }, 
@@ -134,7 +132,7 @@ import { endianness } from 'os';
                  position: absolute;
                  right: 0px;
                  top: -12px;
-                 z-index:1;
+                 z-index:0;
                }
        }
 }

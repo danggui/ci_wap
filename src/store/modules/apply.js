@@ -1,7 +1,21 @@
 import {showInfo,showEditInfo,uploadImage,updateImage,deleteImage,saveApply,saveEdit} from '@/api/apply' 
 import {vuexStorage} from '../../utils/storage';
 import router from '../../router';
-
+function myMap() {
+    return new Map()
+            .set(101,"outpatients")
+            .set(102,"medicals")
+            .set(103,"costs")
+            .set(104,"inspects")
+            .set(105,"others")
+            .set(106,"outpatients")
+            .set(107,"medicals")
+            .set(108,"costs")
+            .set(109,"summarys")
+            .set(110,"inspects")
+            .set(111,"others")
+    
+  }
 const apply = {
     state: {
         people:[],
@@ -88,6 +102,21 @@ const apply = {
             router.push("/claim/0")
         },
         DELETE_IMAGE:(state, data)=>{
+            console.log(data)
+            const type= data.accessoryType
+            let temp=myMap().get(type)
+            if(state.code==115){
+                console.log(data.id)
+                console.log(state.image1[temp].findIndex(item => item.id === data.id))
+                console.log(state.image1[temp])
+                state.image1[temp].splice(state.image1[temp].findIndex(item => item.id === data.id), 1)
+            }
+            else{
+                console.log(data.id)
+                console.log(state.image2[temp].findIndex(item => item.id === data.id))
+                state.image2[temp].splice(state.image2[temp].findIndex(item => item.id === data.id), 1)
+            }
+
             
         },
     },
@@ -128,8 +157,8 @@ const apply = {
           },
           //删除单张图片
           deleteSingleImage({commit},data){
-            deleteImage(data.id).then( (response) => {
-                commit('DELETE_IMAGE', {res:response.data,code:data.code})
+            deleteImage(data).then( (response) => {
+                commit('DELETE_IMAGE', response.data)
              }).catch((error) => {
                  console.log(error);
              })
