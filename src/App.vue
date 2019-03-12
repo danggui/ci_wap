@@ -56,6 +56,7 @@ export default {
 }
 .main-page{
     min-height: calc(100vh - 98px - 138px); 
+    position: relative;
 }
 .Router {
     transition:all .5s ease;

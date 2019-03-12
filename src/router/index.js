@@ -54,6 +54,7 @@ const routes = [
   components: {
     default:()=> import('@/views/family/index'), 
     title:Title,
+    Bottom:Bottom,
    
   },
   meta:{title:'家庭保障'}

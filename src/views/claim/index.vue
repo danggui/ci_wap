@@ -24,5 +24,9 @@ export default {
 </script>
    
 <style rel="stylesheet/scss" lang="scss" scope>
+.claim-lists {
+  display: flex;
+  flex-direction: column;
+}
 
 </style>

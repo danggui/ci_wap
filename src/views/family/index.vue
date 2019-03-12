@@ -1,11 +1,13 @@
 <template>
   <div class="family-container">
-    <div class="main-page">
+    
       <Tab :content="contents" :status="status"  @choose="selectStatus"></Tab>
       <Default v-if="detail.length<=0"/>
-      <Label v-for="(item,index) in detail" :key="index" :content="item.personSecurityInfoResponse" :detail="item.planInsuranceKinds" :isShow="show" :index="index"/>
-    </div>
-       <Bottom/>
+       <div v-else class="flex">
+      <Label  v-for="(item,index) in detail" :key="index" :content="item.personSecurityInfoResponse" :detail="item.planInsuranceKinds" :isShow="show" :index="index"/>
+     </div>
+      
+   <Bottom/>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   data(){
     return{
        isShow:{value:true},
-       contents:["生效中","待生效","已生效"],
+       contents:["生效中","待生效","已失效"],
        show:true,
       
     }
@@ -49,8 +51,11 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scope>
 @import "../../styles/mixin.scss";
 .family-container{
-    
-      
+     .flex{
+      margin-top: 90px;
+      flex:1;
+        min-height: calc(100vh - 98px - 90px - 138px);
+    }
  
  
 }

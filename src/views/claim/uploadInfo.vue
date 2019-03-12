@@ -2,7 +2,7 @@
   <div class="upload-container main-page">
      <div class="title">
        <div>已上传凭证</div>
-       <div></div>
+       <div class="value">{{info[2]}}</div>
       </div>
        <div class="gallary">
            <div v-for="(item,index) in upload" :key="index">
@@ -37,8 +37,10 @@
     },
     computed:{
      ...mapState({
-       upload: state=>state.claim.upload
-      })
+       upload: state=>state.claim.upload,
+       info: state=>state.claim.value
+      }),
+      
     },
     methods:{
       getName(item){
@@ -51,6 +53,8 @@
 <style rel="stylesheet/scss" lang="scss" scope>
 .upload-container{
        >div{
+           padding: 0 32px;
+           background: white;
            border-bottom:1px solid #EBEBEB;
            font-size: 24px;  /*px*/
            line-height: 34px;
@@ -60,9 +64,13 @@
            display: flex;
            font-size: 32px;  /*px*/
            height: 110px;
+           line-height:110px;
            align-items: center;
            justify-content: space-between;
            color: #999999;
+            .value{
+             color:#333333;
+           }
         
        }
        .gallary{
@@ -81,8 +89,7 @@
                         width: 154px;
                          height: 154px;
                         }
-               }
-              
+               } 
            }
        }
        

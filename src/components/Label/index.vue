@@ -50,9 +50,10 @@
 
 <style rel="stylesheet/scss" lang="scss" scope>
 .label-container{
+  
    background: #ffffff;
    height: 110px;
-   margin: 20px 0;
+   margin: 0 0 20px 0;
    padding: 0 32px;
    display: flex;
    justify-content: space-between;

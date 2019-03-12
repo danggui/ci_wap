@@ -1,5 +1,6 @@
 <template>
   <div class="default-container">
+    <div class="layout"></div>
      <div class="default">
         <svg-icon  class-name="default-icon" icon-class="box"  />
       </div> 
@@ -28,18 +29,23 @@
 @import "../../styles/mixin.scss";
 .default-container{
     text-align: center;
+    height: 300px;
+    min-height: calc(100vh - 98px  - 138px);
+    .layout{
+        height: 400px;
+    }
     .default{
           @include bg-image(default);
           width:222px;
           height: 222px;
           background-size:222px 222px;
           margin: 0 auto;
-          margin-top: 270px;
           color: #EBEBEB;
+        
           .default-icon{
             width: 100px;
             height: 100px;
-             line-height: 222px;
+            line-height: 222px;
             transform:translate(0, 50%);
           }
           }

@@ -34,6 +34,9 @@
 
 <style rel="stylesheet/scss" lang="scss" scope>
 .tab-container{
+    position: fixed;
+   
+    width: 100%;
     height: 90px;
     line-height: 90px;
     display: flex;
@@ -43,6 +46,8 @@
     font-size: 28px; /*px*/
     background: #ffffff;
     border-bottom: 1px solid #CCCCCC; /*no*/
+    z-index: 1;
+
     li{
         flex:1;
         text-align: center;
