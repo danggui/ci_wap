@@ -30,7 +30,7 @@ Vue.use(format);
 Vue.use(vStorage);
 
 import  './api/mock'
-
+import 'babel-polyfill'
 Vue.config.productionTip = false
 
 window.addEventListener('popstate', function(e) {
