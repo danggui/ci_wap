@@ -193,13 +193,13 @@ import {Toast} from 'mint-ui'
     outpatient() {
        //this.setStorage("code",115)
        this.selectedTime=null
-       this.$store.dispatch('showApply',{id:3,code:115})
+       this.$store.dispatch('showApply',{id:this.getPerson,code:115})
      },
 
      hospital() {
        // this.setStorage("code",116)
         this.selectedTime=null
-        this.$store.dispatch('showApply',{id:3,code:116})
+        this.$store.dispatch('showApply',{id:this.getPerson,code:116})
       },
       saveForm(isDraft){
            let insuredId= this.getStorage("insuredId")

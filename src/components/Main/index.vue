@@ -38,7 +38,7 @@
      },
      apply(){
         this.$router.push("/apply")
-        this.$store.dispatch('showApply',{id:3,code:115})
+        this.$store.dispatch('showApply',{id:this.getPerson,code:115})
      }
     },
     

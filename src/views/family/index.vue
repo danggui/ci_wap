@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch("showFamilyInsurance",{id:3,type:0})
+    this.$store.dispatch("showFamilyInsurance",{id:this.getPerson,type:0})
   },
   computed:{
   ...mapState({

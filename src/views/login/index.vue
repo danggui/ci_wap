@@ -42,7 +42,7 @@ export default {
     },
   mounted(){
     //this.$store.dispatch("checkMaterial",3) 
-     this.$store.dispatch("getBasicInfo",3) 
+     this.$store.dispatch("getBasicInfo",this.getPerson) 
   }
 }
 </script>

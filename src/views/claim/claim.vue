@@ -51,7 +51,7 @@ export default {
         this.$router.push(`/claim/${index}`)
     },
     fetchData(){
-       this.$store.dispatch("showMyClaim",{id:3,type:this.type})
+       this.$store.dispatch("showMyClaim",{id:this.getPerson,type:this.type})
     },
    
   }

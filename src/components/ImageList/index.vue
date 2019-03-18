@@ -19,7 +19,7 @@
 <script>
   import {mapState,mapMutations} from 'vuex'
   import {Toast} from 'mint-ui'
-import { endianness } from 'os';
+  import { endianness } from 'os';
   export default {
     name:"ImageList",
     props: {

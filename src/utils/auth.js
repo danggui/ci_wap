@@ -20,7 +20,14 @@ export function setPerson(id) {
   return Cookies.set(PersonId, id)
 }
 
-export function getPerson() {
+/*export function getPerson() {
   return 3
 }
+*/
 
+export const personInfo= {
+  install(Vue) {
+      Vue.prototype.getPerson = 
+           3
+  }
+}

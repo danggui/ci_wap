@@ -51,8 +51,8 @@
     name:"FlexLabel",
     props: {
         content:{
-            type:Object,
-            default:{}
+            type:Array,
+            default:[]
         },
         isBank:{
           default:false
