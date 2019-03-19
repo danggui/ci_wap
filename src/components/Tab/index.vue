@@ -1,10 +1,14 @@
 <template>
   <ul class="tab-container">
-     <li v-for="(item,index) in content" :key="index"  :class="{'active':status[index]}" @click="selectStatus(index)">{{item}}</li>
+     <li v-for="(item,index) in content" :key="index"  :class="{'active':status[index]}" @click="selectStatus(index)">{{item}}
+     <span v-if="(index==3)&&!isUpdate" class="redpoint"></span>
+     </li>
+     
  </ul>
 </template>
 
 <script>
+ import {mapState} from "vuex"
   export default {
     name:"Tab",
     props: ["content","status"],
@@ -12,6 +16,11 @@
       return{
           
       }
+    },
+    computed:{
+      ...mapState(
+        {isUpdate:state=>state.home.info.toBeSubmit}
+      )
     },
     methods: {
      selectStatus(index){
@@ -25,6 +34,9 @@
 
 <style rel="stylesheet/scss" lang="scss" scope>
 .tab-container{
+    position: fixed;
+   
+    width: 100%;
     height: 90px;
     line-height: 90px;
     display: flex;
@@ -33,7 +45,9 @@
     color: #666666;
     font-size: 28px; /*px*/
     background: #ffffff;
-    border-bottom: 2px solid #CCCCCC; /*no*/
+    border-bottom: 1px solid #CCCCCC; /*no*/
+    z-index: 1;
+
     li{
         flex:1;
         text-align: center;
@@ -70,6 +84,16 @@
 		.hover::before{
 			width: 200%;
 		}
+    .redpoint{
+            display: inline-block;
+            position: absolute;
+            height:12px;
+            width:12px;
+            border-radius:16px;
+            bottom: 50px;
+            right: 35px;
+            background:#D80031;
+        }
 
 
 }   

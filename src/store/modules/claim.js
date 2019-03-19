@@ -1,7 +1,7 @@
 
 
 
-import {getClaims,generalClaim} from '@/api/claim' 
+import {getClaims,generalClaim,deleteClaim} from '@/api/claim' 
 
 const claim = { 
     state: {
@@ -29,11 +29,15 @@ const claim = {
             state.general={}
             if(data){
                 state.general=data
-                state.value.push(data.typeName,data.name,data.invoiceNumber,data.claimStatus,data.invoiceAmount)
+                state.value.push(data.chargeTypeName,data.name,`${data.invoiceNumber} 个`,data.claimStatusName,data.invoiceAmount)
                 state.person_info=data.personSecurity
                 state.history=data.claimStatusLogs
                 state.upload=data.claimImages
+                state.check=data.claimInvoices
             }
+        },
+        DELETE_CLAIM:(state, index) => {
+            state.list.splice(index,1)
         }
     },
   
@@ -51,7 +55,15 @@ const claim = {
              commit('SHOW_GENERAL_CLAIM',response.data)
             }).catch((error) => {
              console.log(error);
-            })}
+          })},
+          deleteMyClaim({commit},data) {
+            deleteClaim(data.id).then((response) => {
+               commit('DELETE_CLAIM', data.index)
+            }).catch((error) => {
+                console.log(error);
+            })
+
+          },
            
           
        

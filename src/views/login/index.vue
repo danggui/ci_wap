@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
      <v-header :info="info"></v-header>
-     <v-main :isMaterial="info.replenishClaimMaterial"></v-main>
+     <v-main :isMaterial="info.replenishClaimMaterial" :isUpdate="info.toBeSubmit"></v-main>
      <v-nav></v-nav>
       <keep-alive>
       <router-view ></router-view>
@@ -11,11 +11,12 @@
 </template>
 
 <script>
-import header from '@/components/header';
-import main from '@/components/main';
-import nav from '@/components/nav';
+import header from '@/components/Header';
+import main from '@/components/Main';
+import nav from '@/components/Nav';
 import BackTop from '@/components/BackTop';
 import {mapState} from 'vuex'
+
 export default {
   name: 'Login',
   components: {
@@ -41,7 +42,7 @@ export default {
     },
   mounted(){
     //this.$store.dispatch("checkMaterial",3) 
-     this.$store.dispatch("getBasicInfo",3) 
+     this.$store.dispatch("getBasicInfo",this.getPerson) 
   }
 }
 </script>

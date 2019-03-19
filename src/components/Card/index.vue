@@ -35,7 +35,7 @@
           color: #5E62C1;
           font-size: 34px; /*px*/
           height: 48px;
-          line-height: 48px;
+          line-height: 60px;
         }
     }
 

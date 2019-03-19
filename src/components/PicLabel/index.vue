@@ -10,7 +10,7 @@
         <div v-if="content.relativeName"  class="label">{{content.relativeName}}</div> 
        </div>
          <div class="sub-title">
-          {{content.sexName}} |  {{content.age}} 
+          {{content.sexName}} |  {{content.age}}  周岁
        </div>
         <div class="sub-title">
            <span>{{content.idName}} </span>   {{content.idNumber}} 
@@ -78,8 +78,8 @@
        .sub-title{
            color:#999999;
            font-size:28px;/*px*/
-           height: 40px;
-           line-height: 40px;
+           height: 45px;
+           line-height: 45px;
             span{
                 display: inline-block;
                 width: 158px;

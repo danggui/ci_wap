@@ -35,7 +35,7 @@
 @import "../../styles/mixin.scss";
 .bottom-container{
   background: #EBEBEB;
-  
+  padding:0;
   font-size: 25px; /*px*/
   text-align: center;
   width: 100%;
@@ -54,9 +54,9 @@
   }
   .bottom-icon{
      margin: 0 5px;
-     width: 30px;
-     height: 30px;
-     vertical-align: -5px;
+     width: 30px !important;
+     height: 30px!important;
+     vertical-align: -5px!important;
   }
 }
 </style>

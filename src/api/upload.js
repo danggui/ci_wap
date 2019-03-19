@@ -14,3 +14,7 @@ export const uploadImage= (data)=>fetch(`/upload/imageUpload`,
  });
 
  
+ export const  deleteImage = (id)=>fetch(`/accessory/accessoryFile/${id}`,
+{
+    'type': 'delete',
+ });

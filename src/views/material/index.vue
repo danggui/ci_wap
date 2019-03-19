@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch("showMaterial",3)
+    this.$store.dispatch("showMaterial",this.getPerson)
   },
   computed:{
     ...mapState({

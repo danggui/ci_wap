@@ -54,6 +54,7 @@ const routes = [
   components: {
     default:()=> import('@/views/family/index'), 
     title:Title,
+    Bottom:Bottom,
    
   },
   meta:{title:'家庭保障'}
@@ -106,5 +107,10 @@ claimRouter,
 
 
 export default new Router({
+  base:'/ci-wap/',
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { x: 0, y: 0 }
+  },
   routes: routes,
 })

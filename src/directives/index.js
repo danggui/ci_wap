@@ -24,6 +24,11 @@ Vue.directive('back-top',{
   }
 })
 
+Vue.directive('input',{
+
+  
+})
+
 function toTop(){
     let distance = document.documentElement.scrollTop || document.body.scrollTop; //获得当前高度
     let step = distance/15; //每步的距离

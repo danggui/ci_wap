@@ -10,11 +10,11 @@
            </div>
     <div class="content-wrapper">
       <div class="avatar">
-        <img :src="avatar" >
+         <svg-icon class-name="default-avator" :icon-class="avator"  />
       </div>
       <div class="content">
         <div class="name">
-          {{name}}
+          {{info.name}}
         </div>
         <div class="welcome">
           {{welcome}}
@@ -28,12 +28,12 @@
       <div class="cards"> 
       <Card :num="info.securityNums"  title="家庭保障" path="/family"/>
       <Card :num="info.familyPersonNums"  title="家庭成员"  path="/member"/>
-       <Card :num="info.certificateInfoNum"  title="证件资料"  path="/material"/>
+       <Card :num="info.certificateInfoNums"  title="证件资料"  path="/material"/>
       
       </div>
        <div class="instrus" v-if="!info.replenishClaimMaterial"> 
         <div><svg-icon class-name="size-icon" icon-class="bell" /></div>
-          <div>您的理赔申请缺少材料，请点击【这里】补充材料</div>
+          <div @click="jumpTo">您的理赔申请缺少材料，请点击【这里】补充材料</div>
       </div>
       <div class="instrus-no" v-else> 
       </div>
@@ -43,7 +43,7 @@
 <script>
  import Card from '@/components/Card'
  import Title from '@/components/Title'
-
+ import {getSex} from "@/utils/map"
   export default {
     components:{Card,Title},
     props: {
@@ -60,8 +60,7 @@
         detailShow: false,
         title:'自助理赔',
         src: require('@/assets/images/header_back.png'),
-        avatar: '',
-        name:"elsa",
+        avator:getSex(this.info.sex),
         welcome:"欢迎来到CI管理系统",
         //sub_title:['家庭保障','家庭成员','证件资料'],
         isBackShow:{value:true},
@@ -79,6 +78,9 @@
       },
       hideDetail() {
         this.detailShow = false;
+      },
+      jumpTo(){
+        this.$router.push("/material")
       }
     },
     created() {
@@ -126,13 +128,17 @@
   .content-wrapper{
     text-align: left;
     margin: 0 48px;
-    .avatar{
+    .avatar, {
       display: inline-block;
       vertical-align: top;
       border-radius: 50%;
       width: 88px;
       height: 88px;
-      border:2px solid  #FFFFFF; /*no*/
+      //border:2px solid  #FFFFFF; /*no*/
+      .default-avator{
+        width: 100%;
+        height: 100%;
+      }
     }
     .content {
      display: inline-block;
@@ -169,7 +175,10 @@
     padding-left: 40px;
     color: #333333;
       div{
-        display:inline-block
+        display:inline-block;
+        svg{
+        vertical-align: -10px;
+        }
       }
     
   }

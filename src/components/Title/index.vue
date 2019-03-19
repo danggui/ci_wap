@@ -36,6 +36,7 @@
       back(){
         if(this.$route.name=="claim"){
           this.$router.push("/");
+          this.$router.isBack=true
         }
         else{
         this.$router.goBack();//返回上一层

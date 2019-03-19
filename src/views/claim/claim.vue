@@ -1,8 +1,10 @@
 <template>
   <div class="claim-container ">
       <Tab :content="contents" :status="status" @choose="selectStatus"></Tab>
-      <Default v-if="list.length<=0"/>
-      <EditLabel v-for="(item,index) in list" :key="index"  :content="item" :isShow="true" :index="index"/>
+       <Default v-if="list.length<=0"/>
+      <div v-else class="flex">
+      <EditLabel v-for="(item,index) in list" :key="index"  :content="item" :isShow="true" :index="index" />
+      </div>
       <Button/>
   </div>
 </template>
@@ -49,8 +51,9 @@ export default {
         this.$router.push(`/claim/${index}`)
     },
     fetchData(){
-       this.$store.dispatch("showMyClaim",{id:3,type:this.type})
-    }
+       this.$store.dispatch("showMyClaim",{id:this.getPerson,type:this.type})
+    },
+   
   }
 }
 </script>
@@ -58,7 +61,12 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scope>
 @import "../../styles/mixin.scss";
 .claim-container{
-    min-height: calc(100vh - 98px )
+    padding-bottom:100px;
+    .flex{
+      margin-top: 90px;
+      flex:1;
+       min-height: calc(100vh - 98px - 138px );
+    }
 }
 
 </style>

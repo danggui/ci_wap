@@ -16,6 +16,7 @@
    methods: {
      apply(){
          this.$router.push('/apply')
+         this.$store.dispatch('showApply',{id:this.getPerson,code:115})
      }
     },
   };

@@ -3,7 +3,7 @@
       <div class="content" @click="showClaim(content.id)">
       <div class="title" >
            <div class="label"> <div class="sub-title">申请日期</div> <div>{{parseTime(content.createdDate)}}</div></div>
-           <div class="label"> <div class="sub-title">就诊人</div> <div>{{parseTime(content.name)}}</div></div>
+           <div class="label"> <div class="sub-title">就诊人</div> <div>{{content.name}}</div></div>
            <div class="label"> <div class="sub-title">就诊日期</div> <div>{{parseTime(content.doctorDate)}}</div></div>
            <div class="label"> <div class="sub-title">状态</div> <div>{{content.typeName}}</div></div> 
      </div>
@@ -11,19 +11,21 @@
         <svg-icon  class-name="rotate" icon-class="left"  v-on:click.native="showDetail"/>
       </div>
       </div>
-      <div v-if="content.claimStatus==118" class="des">
-        
+      <div v-if="content.supplementaryNote" class="des">
+        <Detail :content="content.supplementaryNote"/>
       </div>
       <div v-if="content.type==3" class="more">
-         <div class="edit">编辑</div><div class="delete">删除</div>
+         <div class="edit" @click="handleEdit(content.id)">编辑</div><div class="delete"  @click="handleDelete(index,content.id)">删除</div>
       </div>
   </div>
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import Detail from '@/components/Detail'
+  import {mapState,mapActions} from 'vuex'
   export default {
     name:"EditLabel",
+    components:{Detail},
     props: {
         content:{
             type:Object,
@@ -42,6 +44,11 @@
           
       }
     },
+    computed:{
+     ...mapState({
+     list: state=>state.claim.list,
+  })
+    },
     methods: {
       reset(){
         history.go();
@@ -49,6 +56,13 @@
      showClaim(id){
          this.showGeneralClaim(id)
          this.$router.push(`/myClaim`)
+     },
+     handleEdit(id){
+        this.$router.push({path: '/apply'});
+        this.$store.dispatch('showEditApply',id);
+     },
+     handleDelete(index,id){
+          this.$store.dispatch('deleteMyClaim',{index:index,id:id});
      },
       ...mapActions([
         'showGeneralClaim'
@@ -60,12 +74,12 @@
 <style rel="stylesheet/scss" lang="scss" scope>
 .edit-label-container{
     background: #ffffff;
-    margin: 20px 0;
+    margin:0 0 20px 0;
     line-height: 50px;
     color:#333333;
     font-size: 30px; /*px*/
    .content{
-    padding:  32px;
+       padding:  32px;
        display: flex;
        align-items: center;
        justify-content: space-between;
@@ -89,10 +103,7 @@
         vertical-align: -10px;
        
 }
-.des{
-    color: #DF8804;
-    background: #EBEBEB;
-}
+
 .more{
     padding: 0 32px;
     height: 84px;
@@ -104,7 +115,7 @@
     font-size: 24px;/*px*/
     >div{
         margin-left:20px;
-        border: 2px solid #999999; /*no*/
+        border: 1px solid #999999; /*no*/
         border-radius: 50px;
         height: 50px;
         width: 130px;
