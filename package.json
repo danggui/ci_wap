@@ -18,7 +18,8 @@
     "build:dev": "node build/build.js --env dev",
     "build:test": "node build/build.js --env test",
     "build:pre": "node build/build.js --env pre",
-    "build:prod": "node build/build.js --env prod"
+    "build:prod": "node build/build.js --env prod",
+    "build:dll": "webpack --config build/webpack.dll.config.js -p"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -59,6 +60,7 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "image-webpack-loader": "^4.6.0",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
     "nightwatch": "^0.9.12",
