@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
 // 引入webpack.env.conf模块
 const envConfig = require('./webpack.env.conf')
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -111,8 +112,9 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./dll/manifest.json')
-  })
+      manifest: require('./vendor-manifest.json')
+    }),
+   
   ],
 
 

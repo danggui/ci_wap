@@ -31,7 +31,7 @@ Vue.use(format);
 Vue.use(vStorage);
 Vue.use(personInfo);
 
-import  './api/mock'
+//import  './api/mock'
 import 'babel-polyfill'
 Vue.config.productionTip = false
 
